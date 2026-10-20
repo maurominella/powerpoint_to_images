@@ -171,7 +171,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "question",
         nargs="?",
-        default="Quale e stata la piattaforma di streaming piu usata nel 2023?",
+        default="Quale categoria di prodotti alimentari è stata più acquistata online in Italia nel 2024?",
         help="Question to send to knowledgebase-istat.",
     )
     parser.add_argument(
@@ -193,6 +193,7 @@ def main(argv: list[str] | None = None) -> int:
                 encoding="utf-8",
             )
             print(f"Full response saved to {args.output}", file=sys.stderr)
+        print(f"\n\n===== Citation:{result['references'][0]["sourceData"]["doc_url"].split("/root:", 1)[1]} =====\n\n")
         print_result(result)
     except (RuntimeError, ValueError, OSError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
